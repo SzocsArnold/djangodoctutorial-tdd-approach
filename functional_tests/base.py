@@ -5,7 +5,8 @@ class FunctionalTest(StaticLiveServerTestCase):
    
     
     def setUp(self):
-       self.browser = webdriver.Firefox(executable_path="C:\\Users\\Arnold\\geckodriver\\geckodriver.exe")
+        self.browser = webdriver.Chrome(executable_path="C:\\Users\\Arnold\\Chromedriver\\chromedriver.exe")
     
-    def test_django(self):
-        self.browser.get('http://localhost:8000')
+
+    def tearDown(self):
+        self.browser.quit()
