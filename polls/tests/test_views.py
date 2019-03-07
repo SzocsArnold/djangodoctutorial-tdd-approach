@@ -51,10 +51,14 @@ class VoteTest(TestCase):
         self.assertEqual(question_choice.votes, 0)
         self.assertEqual(voted_choice.votes, 1)
         
-        
+    def test_POST_was_not_provide_post_data(self):
+        question = Question.objects.create(question_text='what is the problem?', pub_date=timezone.now())
+        response = self.client.post(f'/polls/{question.id}/vote/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'detail.html')
        
 
-    def test_post_redirects_to_results_page(self):
+    def test_POST_redirects_to_results_page(self):
         question = Question.objects.create(question_text='Hello?', pub_date=timezone.now())
         question_choice = question.choice_set.create(choice_text='Yes')
         response = self.client.post(f'/polls/{question.id}/vote/', data={'choice':question_choice.id})

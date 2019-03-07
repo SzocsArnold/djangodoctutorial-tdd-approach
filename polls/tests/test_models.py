@@ -8,7 +8,6 @@ class QuestionModelTest(TestCase):
     def test_saving_and_retrieving_questions(self):
         first_question = Question.objects.create(question_text='Whats going on?', pub_date=timezone.now())
         second_question = Question.objects.create(question_text='What is the weather like?', pub_date=timezone.now())
-
         self.assertEqual(Question.objects.first(), first_question)
         saved_questions = Question.objects.all()
         self.assertEqual(saved_questions.count(), 2)

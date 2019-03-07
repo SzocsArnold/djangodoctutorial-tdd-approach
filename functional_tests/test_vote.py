@@ -6,7 +6,7 @@ class VotingTest(FunctionalTest):
     def test_can_vote(self):
         # pre creating some questions and choices
         self.create_pre_questions()
-        
+
         self.browser.get(self.live_server_url)
         # User goes to home page and noticies a question and cliks on it
         self.browser.find_element_by_link_text('What’s the weather like?').click()
@@ -27,7 +27,7 @@ class VotingTest(FunctionalTest):
         # then She submits the form
         self.browser.find_elements_by_css_selector("input[type='submit'][value='Vote']")[0].click()
         self.browser.implicitly_wait(10)
-
+    
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertIn('sunny -- 2 votes', page_text)
         self.assertIn('cloudy -- 0 vote', page_text) 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404 
-from polls.models import Question
+from polls.models import Question, Choice
 from django.utils import timezone
 from django.urls import reverse
 
